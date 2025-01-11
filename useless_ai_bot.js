@@ -1,8 +1,9 @@
 const TelegramBot = require("node-telegram-bot-api")
 
+const OpenAI = require("openai")
 
 
-const SDK = require('./openaiSDK.js')
+// const SDK = require('./openaiSDK.js')
 const fs = require('fs')
 
 
@@ -11,6 +12,36 @@ require("dotenv").config()
 
 const token = process.env.RANDOM_BOT_API;
 const bot = new TelegramBot(token, { polling: true });
+
+const openai = new OpenAI({
+  baseURL: "https://openrouter.ai/api/v1",
+  apiKey: process.env.OPENAI_API_KEY,
+  // defaultHeaders: {
+  //   "HTTP-Referer": "<YOUR_SITE_URL>", // Optional. Site URL for rankings on openrouter.ai.
+  //   "X-Title": "<YOUR_SITE_NAME>", // Optional. Site title for rankings on openrouter.ai.
+  // }
+})
+
+async function main(request) {
+  try {
+    const completion = await openai.chat.completions.create({
+    model: "meta-llama/llama-3-8b-instruct:extended",
+    messages: [
+      {
+        "role": "user",
+        "content": `${request}`
+      }
+    ]
+  })
+
+  console.log(completion.choices[0].message)
+  return completion.choices[0].message
+  } catch(e) {
+    return "Error Occured. TrY again"
+    console.log(e);
+  }
+  
+}
 
 const commandHandlers = {
   "/start": async (msg, bot) => {
@@ -72,7 +103,7 @@ bot.on("message", async (msg, match) => {
       handler(msg, bot);
     } else {
       try {
-        const beyene = await SDK.main(msg.text)
+        const beyene = await main(msg.text)
         bot.sendMessage(chatId, beyene.content, {
           parse_mode: "Markdown",
         });
