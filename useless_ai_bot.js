@@ -1,3 +1,6 @@
+const express = require("express")
+const app = express()
+
 const TelegramBot = require("node-telegram-bot-api")
 
 const OpenAI = require("openai")
@@ -34,7 +37,7 @@ async function main(request) {
     ]
   })
 
-  console.log(completion.choices[0].message)
+  // console.log(completion.choices[0].message)
   return completion.choices[0].message
   } catch(e) {
     return "Error Occured. TrY again"
@@ -123,7 +126,7 @@ bot.on("message", async (msg, match) => {
   
 });
 
-console.log("ai bot is running...");
+app.listen(3069, () => console.log("ai bot is running..."))
 
 bot.on("polling_error", (error) => {
   console.error("Polling error:", error);
