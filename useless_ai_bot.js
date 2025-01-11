@@ -2,7 +2,7 @@ const TelegramBot = require("node-telegram-bot-api")
 
 
 
-const { main } = require('./openaiSDK.js')
+const SDK = require('./openaiSDK.js')
 const fs = require('fs')
 
 
@@ -72,7 +72,7 @@ bot.on("message", async (msg, match) => {
       handler(msg, bot);
     } else {
       try {
-        const beyene = await main(msg.text)
+        const beyene = await SDK.main(msg.text)
         bot.sendMessage(chatId, beyene.content, {
           parse_mode: "Markdown",
         });

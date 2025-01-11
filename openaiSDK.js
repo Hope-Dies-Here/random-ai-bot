@@ -33,5 +33,5 @@ async function main(request) {
   
 }
 
-module.exports = { main }
+module.exports.default = main
 // main()
