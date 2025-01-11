@@ -1,14 +1,14 @@
-import TelegramBot from "node-telegram-bot-api";
+const TelegramBot = require("node-telegram-bot-api")
 
 
 
-import {main} from './openaiSDK.js'
-import fs from 'fs'
+const { main } = require('./openaiSDK.js')
+const fs = require('fs')
 
 
 
-import * as dotenv from 'dotenv';
-dotenv.config()
+require("dotenv").config()
+
 const token = process.env.RANDOM_BOT_API;
 const bot = new TelegramBot(token, { polling: true });
 

@@ -1,7 +1,7 @@
-import OpenAI from "openai"
+const OpenAI = require("openai")
 
-import * as dotenv from 'dotenv';
-dotenv.config()
+require("dotenv").config()
+
 
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
@@ -12,7 +12,7 @@ const openai = new OpenAI({
   // }
 })
 
-export async function main(request) {
+async function main(request) {
   try {
     const completion = await openai.chat.completions.create({
     model: "meta-llama/llama-3-8b-instruct:extended",
@@ -33,5 +33,5 @@ export async function main(request) {
   
 }
 
-// export main
+module.exports = { main }
 // main()
