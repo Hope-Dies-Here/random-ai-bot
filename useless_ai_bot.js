@@ -1,5 +1,5 @@
-const express = require("express")
-const app = express()
+// const express = require("express")
+// const app = express()
 
 const TelegramBot = require("node-telegram-bot-api")
 
@@ -126,7 +126,7 @@ bot.on("message", async (msg, match) => {
   
 });
 
-app.listen(3069, () => console.log("ai bot is running..."))
+console.log("ai bot is running...")
 
 bot.on("polling_error", (error) => {
   console.error("Polling error:", error);
@@ -144,3 +144,5 @@ bot.on("polling_error", (error) => {
 //   const filtered = parsedData.filter(data => data.username === "rootpal")
 //   // console.log(filtered)
 // })
+
+module.exports = bot; 
