@@ -1,4 +1,11 @@
 {
+  "name": "random ai",
+  "version": "1.0.0",
+  "main": "useless_ai_bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node useless_ai_bot.js"
+  },
   "type": "module",
   "dependencies": {
     "dotenv": "^16.4.7",

@@ -1,14 +1,14 @@
 {
   "builds": [
       {
-          "src": "useless_api_bot.js",
+          "src": "useless_ai_bot.js",
           "use": "@vercel/node"
       }
   ],
   "routes": [
       {
         "src": "/(.*)",
-        "dest": "useless_api_bot.js"
+        "dest": "useless_ai_bot.js"
       }
   ]
 }
