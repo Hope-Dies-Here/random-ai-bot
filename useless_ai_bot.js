@@ -53,20 +53,20 @@ bot.on("message", async (msg, match) => {
     const command = msg.text;
     const handler = commandHandlers[command];
     bot.sendChatAction(chatId, 'typing'); 
-    if(msg.text !== "Chill Button" && msg.text !== "/start") {
-      fs.readFile("logs.json", (err, data) => {
-          if(err) {
-            console.error("err")
-            process.exit(1)
-          }
+    // if(msg.text !== "Chill Button" && msg.text !== "/start") {
+    //   fs.readFile("./logs.json", (err, data) => {
+    //       if(err) {
+    //         console.error("err")
+    //         process.exit(1)
+    //       }
 
-          const parsedData = JSON.parse(data.toString())
-          console.log(msg)
-          const newData = [{ username: msg.chat.username || msg.chat.first_name, prompt: msg.text }, ...parsedData]
-          fs.writeFile("./logs.json", JSON.stringify(newData), (err) => err ? console.log("cant save") : console.log("saved"))
-        })  
+    //       const parsedData = JSON.parse(data.toString())
+    //       console.log(msg)
+    //       const newData = [{ username: msg.chat.username || msg.chat.first_name, prompt: msg.text }, ...parsedData]
+    //       fs.writeFile("./logs.json", JSON.stringify(newData), (err) => err ? console.log("cant save") : console.log("saved"))
+    //     })  
 
-    }
+    // }
 
     if (handler) {
       handler(msg, bot);
@@ -100,13 +100,13 @@ bot.on("polling_error", (error) => {
 });
 
 
-const logData = fs.readFile("./logs.json", (err, data) => {
-  if(err) {
-    return console.log(err)
-    process.exit(1)
-  }
+// const logData = fs.readFile("./logs.json", (err, data) => {
+//   if(err) {
+//     return console.log(err)
+//     process.exit(1)
+//   }
 
-  const parsedData = JSON.parse(data)
-  const filtered = parsedData.filter(data => data.username === "rootpal")
-  // console.log(filtered)
-})
+//   const parsedData = JSON.parse(data)
+//   const filtered = parsedData.filter(data => data.username === "rootpal")
+//   // console.log(filtered)
+// })
